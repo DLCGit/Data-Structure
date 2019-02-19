@@ -5,11 +5,11 @@
 typedef unsigned int UINT;
 UINT Statistical_Nodes( Node *root )
 {
-	/* 统计  */
-	UINT count = 0;
-	while ( NULL != root ) {
-		++count; /* 计数  */
-		root = root->next;
-	}
-	return count;
+    /* 统计  */
+    UINT count = 0;
+    while ( NULL != root ) {
+	++count; /* 计数  */
+	root = root->next;
+    }
+    return count;
 }
