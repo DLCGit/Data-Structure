@@ -9,7 +9,7 @@ void Input_Nodes( Node **pHead )
     Node *prev = NULL; /* 暂存之前的值  */
     int val;
 
-    printf( "输入一个数: " );
+    printf( "输入一个数（输入任意字母结束输入）: " );
     while ( TRUE == scanf_s( "%d", &val ) )
     {
 #if NUL
