@@ -12,10 +12,11 @@ void Input_Nodes( Node **pHead )
     printf( "输入一个数: " );
     while ( TRUE == scanf_s( "%d", &val ) )
     {
+#if NUL
 	/* 读掉多余空白符  */
 	while ( '\n' != getchar() )
 	    continue;
-
+#endif
 	/* 每次循环输入都为 curr 指针分配一块指向内存的空间存入新输入的数据  */
 	curr = ( Node * )malloc( sizeof( Node ) );
 
