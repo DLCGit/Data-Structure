@@ -61,7 +61,7 @@ int main( int argc, char **argv )
     scanf_s( "%d%*c", &del_By_Val );
 
     /* 检查需要删除的数据是否在表中已存在, 不存在则提示重新输入, 否则直到数据输入到表中存在为止  */
-    while ( !Examine_Nodes( root, del_By_Val ) ) {
+    while ( Examine_Nodes( root, del_By_Val ) ) {
         printf( "你要删除的数据在表中不存在, 请重新输入一个在表中存在的值: " );
 	scanf_s( "%d%*c", &del_By_Val );
     }
