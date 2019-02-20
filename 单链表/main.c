@@ -20,7 +20,7 @@ int main( int argc, char **argv )
     }
     getchar();
 
-#if FALSE
+#if NUL
     /* 读掉多余空白符  */
     while ( '\n' != getchar() )
 	continue; 
