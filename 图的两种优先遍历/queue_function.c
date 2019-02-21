@@ -11,19 +11,19 @@
  *头结点中不存放数据，只存放指针  
  */
 PQUEUE create_queue( void ) {
-	PQUEUE pS = ( PQUEUE )malloc( sizeof( QUEUE ) );
-	pS->front = ( PNODE  )malloc( sizeof( NODE  ) );
+    PQUEUE pS = ( PQUEUE )malloc( sizeof( QUEUE ) );
+    pS->front = ( PNODE  )malloc( sizeof( NODE  ) );
 
-	if ( !pS || !pS->front ) {
-		printf( "为创建队列分配动态内存失败!" );
-		exit( -1 );
-	} 
-	else {
-		pS->rear        = pS->front;
-		pS->front->pNext = NULL;
-	}
+    if ( !pS || !pS->front ) {
+	printf( "为创建队列分配动态内存失败!" );
+	exit( -1 );
+    } 
+    else {
+	pS->rear        = pS->front;
+	pS->front->pNext = NULL;
+    }
 
-	return pS;
+    return pS;
 }
 /* ---------------------------------------------------------------------------------------------  */
 
@@ -31,10 +31,10 @@ PQUEUE create_queue( void ) {
 /* ---------------------------------------------------------------------------------------------  */
 /* 判断队列是否为空  */
 bool is_empty( PQUEUE pS ) {
-	if ( pS->front == pS->rear )
-		return TRUE;
-	else
-		return FALSE;
+    if ( pS->front == pS->rear )
+	return TRUE;
+    else
+	return FALSE;
 }
 /* ---------------------------------------------------------------------------------------------  */
 
@@ -42,21 +42,21 @@ bool is_empty( PQUEUE pS ) {
 /* ---------------------------------------------------------------------------------------------  */
 /* 入队, 从队尾入队, 队头指针保持不变  */
 void en_queue( PQUEUE pS, int e ) {
-	PNODE pNew = ( PNODE )malloc( sizeof( NODE ) );
+    PNODE pNew = ( PNODE )malloc( sizeof( NODE ) );
 
-	if ( !pNew ) {
-		printf( "为创建结点空间分配动态内存失败!" );
-		exit( -1 );
-	}
-	else {
-		pNew->data  = e;
-		pNew->pNext = NULL;
+    if ( !pNew ) {
+	printf( "为创建结点空间分配动态内存失败!" );
+	exit( -1 );
+    }
+    else {
+	pNew->data  = e;
+	pNew->pNext = NULL;
 
-		pS->rear->pNext = pNew;
-		pS->rear       = pNew;
-	}
+	pS->rear->pNext = pNew;
+	pS->rear       = pNew;
+    }
 
-	return NUL;
+    return NUL;
 }
 /* ---------------------------------------------------------------------------------------------  */
 
@@ -66,23 +66,23 @@ void en_queue( PQUEUE pS, int e ) {
  * 需要对队尾指针重新赋值, 使其指向头结点 
  */
 bool de_queue( PQUEUE pS, int *pData ) {
-	if ( is_empty( pS ) )
-		return FALSE;
-	else {
-		PNODE p = pS->front->pNext;
-		*pData  = p->data;
-		pS->front->pNext = p->pNext;
+    if ( is_empty( pS ) )
+	return FALSE;
+    else {
+	PNODE p = pS->front->pNext;
+	*pData  = p->data;
+	pS->front->pNext = p->pNext;
 
-		/* 以下为队列队头元素出队特殊情况, 一般情况下, 删除队头元素时, 
-		 * 仅需修改头结点中的指针, 但当队列中最后一个元素被删除时, 
-		 * 队尾指针也会丢失, 因此需要对队尾指针重新赋值让它重新指向头结点 
-		 */
-		if ( p == pS->rear )
-			pS->rear = pS->front;
-		free( p );
-	}
+	/* 以下为队列队头元素出队特殊情况, 一般情况下, 删除队头元素时, 
+         * 仅需修改头结点中的指针, 但当队列中最后一个元素被删除时, 
+	 * 队尾指针也会丢失, 因此需要对队尾指针重新赋值让它重新指向头结点 
+	 */
+	if ( p == pS->rear )
+	    pS->rear = pS->front;
+	free( p );
+    }
 
-	return TRUE;
+    return TRUE;
 }
 /* ---------------------------------------------------------------------------------------------  */
 
@@ -90,19 +90,19 @@ bool de_queue( PQUEUE pS, int *pData ) {
 /* ---------------------------------------------------------------------------------------------  */
 /* 遍历队列, 从队头向队尾依次输出队中元素  */
 void traverse_queue( PQUEUE pS ) {
-	if ( is_empty( pS ) )
-		puts( "队列中没有任何数据!" );
-	else {
-		PNODE pCurr = pS->front->pNext;
-		printf( "队列中的数据为: " );
-		while ( pCurr ) {
-			printf( "%d ", pCurr->data );
-			pCurr = pCurr->pNext;
-		}
-		putchar( '\n' );
+    if ( is_empty( pS ) )
+	puts( "队列中没有任何数据!" );
+    else {
+	PNODE pCurr = pS->front->pNext;
+	printf( "队列中的数据为: " );
+	while ( pCurr ) {
+	    printf( "%d ", pCurr->data );
+	    pCurr = pCurr->pNext;
 	}
+	putchar( '\n' );
+    }
 
-	return NUL;
+    return NUL;
 }
 /* ---------------------------------------------------------------------------------------------  */
 
@@ -112,18 +112,18 @@ void traverse_queue( PQUEUE pS ) {
  * 并将其指向设置为空, 避免垂直指针产生 
  */
 void destroy_queue( PQUEUE pS ) {
-	if ( is_empty( pS ) )
-		return NUL;
-	else {
-		while ( pS->front ) {
-			pS->rear  = pS->front->pNext;
-			free( pS->front );
-			pS->front = pS->rear;
-		}
-	}
-	free( pS );
-	pS = 0;
-
+    if ( is_empty( pS ) )
 	return NUL;
+    else {
+	while ( pS->front ) {
+	    pS->rear  = pS->front->pNext;
+	    free( pS->front );
+	    pS->front = pS->rear;
+	}
+    }
+    free( pS );
+    pS = 0;
+
+    return NUL;
 }
 /* ---------------------------------------------------------------------------------------------  */
