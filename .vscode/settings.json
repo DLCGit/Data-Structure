@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "array_shift.h": "c",
+        "dfs.h": "c",
+        "graph.h": "c",
+        "queue.h": "c",
+        "hash_table.h": "c",
+        "linked_list.h": "c"
+    }
+}
